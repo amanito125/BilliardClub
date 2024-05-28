@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BilliardClub.Data.User>
+
+@{
+    ViewData["Title"] = "Всички потребители";
+}
+
+<style>
+    body {
+        background: url('https://i.redd.it/i-recreated-one-of-the-ai-generated-frutiger-aero-v0-siz7hsb2ez7a1.png?width=1920&format=png&auto=webp&s=e06aaf5d6aa7a036b65daa4860c4ad5bd68e9c4e') no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: white;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        padding: 20px;
+    }
+
+    .linkedtext {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #fff;
+        color: black;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .card {
+        margin: 10px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-footer {
+        padding: 10px;
+    }
+
+    .btn {
+        margin: 5px;
+    }
+</style>
+
+<h1>Всички потребители</h1>
+
+<p>
+    <a asp-action="Create" class="linkedtext">Създай нов потребител</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card bg-light mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.FirstName @item.LastName</h5>
+                        <p class="card-text">@item.PhoneNumber</p>
+                    </div>
+                    <div class="card-footer bg-light text-center">
+                        <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-light">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-light">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-light">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
